@@ -25,6 +25,7 @@ function addBookToLibrary(book) {
 */
 function deleteBook(index) {
   bookArray.splice(index, 1);
+  render();
 }
 /**
 *@param{int} index is the index of the book in the array that we gonna modify
@@ -70,10 +71,14 @@ function createNewBook(e) {
 */
 function render() {
   let table = document.getElementById('bookTable');
-
+  for(var i = table.rows.length - 1; i > 0; i--)
+{
+    table.deleteRow(i);
+}
+  i=-1
   bookArray.forEach(function(book) {
     let tr = document.createElement('tr');
-
+    i+=1
     let titleTd = document.createElement('td');
     titleTd.innerText = book.title;
     let authorTd = document.createElement('td');
@@ -88,6 +93,14 @@ function render() {
     tr.appendChild(numPagesTd);
     tr.appendChild(isReadTd);
 
+    var btn = document.createElement('input');
+    btn.type = "button";
+    btn.className = "btn";
+    btn.value = "delete";
+    btn.addEventListener("click", function(){
+      deleteBook(i);
+  });
+    tr.appendChild(btn);
     table.appendChild(tr);
   });
 }
