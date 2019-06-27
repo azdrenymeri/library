@@ -42,26 +42,25 @@ function readBook(index) {
 document.getElementById('submitBookBtn').addEventListener('click', createNewBook);
 
 /**
-* The handler of button 'Submit book'
+* The handler of the button 'Submit book'
 @param{e} e is the event
 */
 function createNewBook(e) {
   // getting data from the form
-  const title = document.getElementById('bookTitle').innerText;
-  const author = document.getElementById('bookAuthor').innerText;
-  const numPages = document.getElementById('bookNumPages').innerText;
+  const title = document.getElementById('bookTitle');
+  const author = document.getElementById('bookAuthor');
+  const numPages = document.getElementById('bookNumPages');
   const isRead = document.getElementById('isRead').checked? true : false;
   // creating the Book object
-  const book = new Book(title, author, numPages, isRead);
+  const book = new Book(title.value, author.value, numPages.value, isRead);
   // adding it to the main array of books
   addBookToLibrary(book);
-  // removing test from the form
-  title.innerText = '';
-  author.innerText = '';
-  numPages.innerText = '';
+  // removing text from the form
+  title.value = '';
+  author.value = '';
+  numPages.value = '';
   // re-rendering the table of data
   render();
-  console.log(title+' '+author+' '+numPages+' '+isRead);
 }
 
 // DOM Manipulation part

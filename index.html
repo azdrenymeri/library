@@ -4,26 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="assets/main.css">
   <title>Library</title>
 </head>
 <body>
-  <form>
+  <form method="POST">
+  <p>
     <input type="text" placeholder="Title" id="bookTitle">
     <input type="text" placeholder="Author" id="bookAuthor">
+  </p>
+  <p>
     <input type="number" placeholder="Number of pages" id="bookNumPages">
     <input type="checkbox" id="isRead"> Is Readed ?
+  </p>
 
   </form>
-  <button id="submitBookBtn">Submit it</button>
-  <button>Add Book</button>
+<button id="submitBookBtn">Submit it</button>
+<hr>
   <table>
-    <th>
-      <td>Id</td>
-      <td>Title</td>
-      <td>Author</td>
-      <td>Num. of pages</td>
-      <td>Is readed ?</td>
-    <th>
+    <th> Id </th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Num. of pages</th>
+      <th>Is readed ?</th>
   </table>
 
   <script src="scripts/app.js"></script>
