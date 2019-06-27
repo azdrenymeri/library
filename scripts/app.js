@@ -70,21 +70,17 @@ function createNewBook(e) {
 * This method renders the books on the table
 */
 function render() {
-
   const table = document.getElementById('bookTable');
+
+  // cleaning table from rows
+  for (let i = table.rows.length - 1; i > 0; i--) {
+    table.deleteRow(i);
+  }
 
   bookArray.forEach(function(book, index) {
     let tr = document.createElement('tr');
     tr.setAttribute('data-key', index);
 
-  let table = document.getElementById('bookTable');
-  for(var i = table.rows.length - 1; i > 0; i--)
-    {
-    table.deleteRow(i);
-    }
-
-  bookArray.forEach(function(book) {
-    let tr = document.createElement('tr');
 
     let titleTd = document.createElement('td');
     titleTd.innerText = book.title;
@@ -98,21 +94,21 @@ function render() {
     isReadCheckBox.type = 'checkbox';
     isReadCheckBox.id = 'isReadCheck';
     isReadCheckBox.checked = book.isRead;
-
     isReadTd.appendChild(isReadCheckBox);
-    // isReadTd.innerText = book.isRead;
+
 
     tr.appendChild(titleTd);
     tr.appendChild(authorTd);
     tr.appendChild(numPagesTd);
     tr.appendChild(isReadTd);
 
-    var btn = document.createElement('input');
+
+    const btn = document.createElement('input');
     btn.type = "button";
     btn.className = "btn";
     btn.value = "delete";
     btn.addEventListener("click", function(){
-      deleteBook(i);
+      deleteBook(index);
   });
     tr.appendChild(btn);
     table.appendChild(tr);
