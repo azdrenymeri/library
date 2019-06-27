@@ -63,6 +63,17 @@ function createNewBook(e) {
   // re-rendering the table of data
   render();
 }
+/**
+* this function is the handler of the checkbox  and it will toggle ita
+* @param{event} event is the event
+*/
+function toggleIsRead(event) {
+  if (event.target.checked) {
+    event.target.checked = false;
+  } else {
+    event.target.checked = true;
+  }
+}
 
 // DOM Manipulation part
 
@@ -94,6 +105,7 @@ function render() {
     isReadCheckBox.type = 'checkbox';
     isReadCheckBox.id = 'isReadCheck';
     isReadCheckBox.checked = book.isRead;
+    isReadCheckBox.addEventListener('clik', toggleIsRead);
     isReadTd.appendChild(isReadCheckBox);
 
 
@@ -104,12 +116,12 @@ function render() {
 
 
     const btn = document.createElement('input');
-    btn.type = "button";
-    btn.className = "btn";
-    btn.value = "delete";
-    btn.addEventListener("click", function(){
+    btn.type = 'button';
+    btn.className = 'btn';
+    btn.value = 'delete';
+    btn.addEventListener('click', function() {
       deleteBook(index);
-  });
+    });
     tr.appendChild(btn);
     table.appendChild(tr);
   });
