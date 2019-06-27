@@ -27,18 +27,6 @@ function deleteBook(index) {
   bookArray.splice(index, 1);
   render();
 }
-/**
-*@param{int} index is the index of the book in the array that we gonna modify
-*/
-function readBook(index) {
-  bookArray.forEach(function(book) {
-    if (book.isRead === false) {
-      book.isRead = true;
-    } else {
-      book.isRead = false;
-    }
-  });
-}
 // Listeners
 document.getElementById('submitBookBtn').addEventListener('click', createNewBook);
 
