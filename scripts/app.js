@@ -69,5 +69,25 @@ function createNewBook(e) {
 * This method renders the books on the table
 */
 function render() {
+  let table = document.getElementById('bookTable');
 
+  bookArray.forEach(function(book) {
+    let tr = document.createElement('tr');
+
+    let titleTd = document.createElement('td');
+    titleTd.innerText = book.title;
+    let authorTd = document.createElement('td');
+    authorTd.innerText = book.author;
+    let numPagesTd = document.createElement('td');
+    numPagesTd.innerText = book.numPages;
+    let isReadTd = document.createElement('td');
+    isReadTd.innerText = book.isRead;
+
+    tr.appendChild(titleTd);
+    tr.appendChild(authorTd);
+    tr.appendChild(numPagesTd);
+    tr.appendChild(isReadTd);
+
+    table.appendChild(tr);
+  });
 }
