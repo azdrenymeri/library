@@ -68,11 +68,14 @@ function createNewBook(e) {
 * @param{event} event is the event
 */
 function toggleIsRead(event) {
-  if (event.target.checked) {
-    event.target.checked = false;
+  const index = event.target.parentElement.parentElement.getAttribute('data-key');
+
+  if (bookArray[index].isRead === true) {
+    bookArray[index].isRead = false;
   } else {
-    event.target.checked = true;
+    bookArray[index].isRead = true;
   }
+  render();
 }
 
 // DOM Manipulation part
@@ -105,7 +108,7 @@ function render() {
     isReadCheckBox.type = 'checkbox';
     isReadCheckBox.id = 'isReadCheck';
     isReadCheckBox.checked = book.isRead;
-    isReadCheckBox.addEventListener('clik', toggleIsRead);
+    isReadCheckBox.addEventListener('change', toggleIsRead);
     isReadTd.appendChild(isReadCheckBox);
 
 
