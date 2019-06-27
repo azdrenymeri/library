@@ -69,11 +69,11 @@ function createNewBook(e) {
 * This method renders the books on the table
 */
 function render() {
-  let table = document.getElementById('bookTable');
+  const table = document.getElementById('bookTable');
 
-  bookArray.forEach(function(book) {
+  bookArray.forEach(function(book, index) {
     let tr = document.createElement('tr');
-
+    tr.setAttribute('data-key', index);
     let titleTd = document.createElement('td');
     titleTd.innerText = book.title;
     let authorTd = document.createElement('td');
@@ -81,7 +81,14 @@ function render() {
     let numPagesTd = document.createElement('td');
     numPagesTd.innerText = book.numPages;
     let isReadTd = document.createElement('td');
-    isReadTd.innerText = book.isRead;
+
+    let isReadCheckBox = document.createElement('input');
+    isReadCheckBox.type = 'checkbox';
+    isReadCheckBox.id = 'isReadCheck';
+    isReadCheckBox.checked = book.isRead;
+
+    isReadTd.appendChild(isReadCheckBox);
+    // isReadTd.innerText = book.isRead;
 
     tr.appendChild(titleTd);
     tr.appendChild(authorTd);
