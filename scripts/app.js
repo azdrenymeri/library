@@ -3,10 +3,10 @@ const bookArray = []; // global array
 // MVP part
 /**
  * This is the booj object
- * @param {string} title The title of the book
- * @param {string} author The author of the book
- * @param {int} numPages The number of pages of the book
- * @param {boolean}isRead Has the book been readed yet ?
+ * param {string} title The title of the book
+ * param {string} author The author of the book
+ * param {int} numPages The number of pages of the book
+ * param {boolean}isRead Has the book been readed yet ?
  */
 function Book(title, author, numPages, isRead) {
   this.title = title;
@@ -55,16 +55,12 @@ function createNewBook(e) {
 * this function is the handler of the checkbox  and it will toggle ita
 * @param{event} event is the event
 */
-function toggleIsRead(event) {
-  const index = event.target.parentElement.parentElement.getAttribute('data-key');
 
-  if (bookArray[index].isRead === true) {
-    bookArray[index].isRead = false;
-  } else {
-    bookArray[index].isRead = true;
-  }
+Book.prototype.toggleIsRead = function() {
+  const index = event.target.parentElement.parentElement.getAttribute('data-key');
+  bookArray[index].isRead=!bookArray[index].isRead;
   render();
-}
+};
 
 // DOM Manipulation part
 
@@ -96,7 +92,7 @@ function render() {
     isReadCheckBox.type = 'checkbox';
     isReadCheckBox.id = 'isReadCheck';
     isReadCheckBox.checked = book.isRead;
-    isReadCheckBox.addEventListener('change', toggleIsRead);
+    isReadCheckBox.addEventListener('change', book.toggleIsRead);
     isReadTd.appendChild(isReadCheckBox);
 
 
