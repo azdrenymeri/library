@@ -17,7 +17,8 @@ function Book(title, author, numPages, isRead) {
 /**
 *@param{Object} book adds a newly created book into array
 */
-function addBookToLibrary(book) {
+function addBookToLibrary(title, author, pages, isRead) {
+  const book = new Book(title, author, pages, isRead);
   bookArray.push(book);
 }
 /**
@@ -40,10 +41,9 @@ function createNewBook(e) {
   const author = document.getElementById('bookAuthor');
   const numPages = document.getElementById('bookNumPages');
   const isRead = document.getElementById('isRead').checked? true : false;
-  // creating the Book object
-  const book = new Book(title.value, author.value, numPages.value, isRead);
+  
   // adding it to the main array of books
-  addBookToLibrary(book);
+  addBookToLibrary(title.value, author.value, numPages.value, isRead);
   // removing text from the form
   title.value = '';
   author.value = '';
