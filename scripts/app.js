@@ -1,73 +1,50 @@
 const bookArray = []; // global array
 
-// MVP part
-/**
- * This is the booj object
- * param {string} title The title of the book
- * param {string} author The author of the book
- * param {int} numPages The number of pages of the book
- * param {boolean}isRead Has the book been readed yet ?
- */
 function Book(title, author, numPages, isRead) {
   this.title = title;
   this.author = author;
   this.numPages = numPages;
   this.isRead = isRead;
 }
-/**
-*@param{Object} book adds a newly created book into array
-*/
+
 function addBookToLibrary(title, author, pages, isRead) {
   const book = new Book(title, author, pages, isRead);
   bookArray.push(book);
 }
-/**
-*@param{int} index is the index where the book is stored in array
-*/
+
 function deleteBook(index) {
   bookArray.splice(index, 1);
-  render();
+  renderTable();
 }
-// Listeners
+
+
 document.getElementById('submitBookBtn').addEventListener('click', createNewBook);
 
-/**
-* The handler of the button 'Submit book'
-@param{e} e is the event
-*/
 function createNewBook(e) {
   // getting data from the form
   const title = document.getElementById('bookTitle');
   const author = document.getElementById('bookAuthor');
   const numPages = document.getElementById('bookNumPages');
   const isRead = document.getElementById('isRead').checked? true : false;
-  
-  // adding it to the main array of books
+
+
   addBookToLibrary(title.value, author.value, numPages.value, isRead);
-  // removing text from the form
+
+
   title.value = '';
   author.value = '';
   numPages.value = '';
-  // re-rendering the table of data
-  render();
-}
-/**
-* this function is the handler of the checkbox  and it will toggle ita
-* @param{event} event is the event
-*/
 
-Book.prototype.toggleIsRead = function() {
-  const index = event.target.parentElement.parentElement.getAttribute('data-key');
+  renderTable();
+}
+
+Book.prototype.toggleIsRead = function(index) {
   bookArray[index].isRead=!bookArray[index].isRead;
-  render();
+  renderTable();
 };
 
 // DOM Manipulation part
-
-/**
-* This method renders the books on the table
-*/
-function render() {
+function renderTable() {
   const table = document.getElementById('bookTable');
 
   // cleaning table from rows
@@ -92,7 +69,7 @@ function render() {
     isReadCheckBox.type = 'checkbox';
     isReadCheckBox.id = 'isReadCheck';
     isReadCheckBox.checked = book.isRead;
-    isReadCheckBox.addEventListener('change', book.toggleIsRead);
+    isReadCheckBox.addEventListener('change',(event)=> book.toggleIsRead(event.target.parentElement.parentElement.getAttribute('data-key')));
     isReadTd.appendChild(isReadCheckBox);
 
 
